@@ -73,10 +73,21 @@ public class EmailNotificationServiceImpl implements EmailNotification<Multipart
 	@Override
 	public ResponseDto sendEmail(String[] mailTo, String[] mailCc, String mailSubject, String mailContent,
 			MultipartFile[] attachments) {
+		 LOGGER.info("Entered sendEmail() method");
 		ResponseDto dto = new ResponseDto();
+
+		LOGGER.debug("Preparing to send email with the following details:");
+	    LOGGER.debug("Recipients (To): {}", (mailTo != null ? String.join(",", mailTo) : "null"));
+	    LOGGER.debug("Recipients (CC): {}", (mailCc != null ? String.join(",", mailCc) : "null"));
+	    LOGGER.debug("Subject: {}", mailSubject);
+	    LOGGER.debug("HTML Content Enabled: {}", isHtmlEnable);
+    	LOGGER.debug("Attachments Present: {}", (attachments != null && attachments.length > 0));
 		LOGGER.info("To Request : " + String.join(",", mailTo));
+		
 		if(!isProxytrue) {
-		send(mailTo, mailCc, mailSubject, mailContent, attachments);
+			LOGGER.info("Proxy mail setting is disabled. Proceeding to send email directly.");
+            send(mailTo, mailCc, mailSubject, mailContent, attachments);
+            LOGGER.info("Email sending initiated successfully.");
 		}
 		dto.setStatus(MailNotifierConstants.MESSAGE_SUCCESS_STATUS.getValue());
 		dto.setMessage(MailNotifierConstants.MESSAGE_REQUEST_SENT.getValue());
