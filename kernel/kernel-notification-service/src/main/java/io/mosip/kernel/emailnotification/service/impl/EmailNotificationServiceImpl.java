@@ -76,12 +76,12 @@ public class EmailNotificationServiceImpl implements EmailNotification<Multipart
 		 LOGGER.info("Entered sendEmail() method");
 		ResponseDto dto = new ResponseDto();
 
-		LOGGER.debug("Preparing to send email with the following details:");
-	    LOGGER.debug("Recipients (To): {}", (mailTo != null ? String.join(",", mailTo) : "null"));
-	    LOGGER.debug("Recipients (CC): {}", (mailCc != null ? String.join(",", mailCc) : "null"));
-	    LOGGER.debug("Subject: {}", mailSubject);
-	    LOGGER.debug("HTML Content Enabled: {}", isHtmlEnable);
-    	LOGGER.debug("Attachments Present: {}", (attachments != null && attachments.length > 0));
+		LOGGER.info("Preparing to send email with the following details:");
+	    LOGGER.info("Recipients (To): {}", (mailTo != null ? String.join(",", mailTo) : "null"));
+	    LOGGER.info("Recipients (CC): {}", (mailCc != null ? String.join(",", mailCc) : "null"));
+	    LOGGER.info("Subject: {}", mailSubject);
+	    LOGGER.info("HTML Content Enabled: {}", isHtmlEnable);
+    	LOGGER.info("Attachments Present: {}", (attachments != null && attachments.length > 0));
 		LOGGER.info("To Request : " + String.join(",", mailTo));
 		
 		if(!isProxytrue) {
