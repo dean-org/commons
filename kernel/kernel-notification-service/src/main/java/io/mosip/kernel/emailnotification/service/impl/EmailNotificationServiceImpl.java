@@ -83,6 +83,8 @@ public class EmailNotificationServiceImpl implements EmailNotification<Multipart
 	    LOGGER.info("HTML Content Enabled: {}", isHtmlEnable);
     	LOGGER.info("Attachments Present: {}", (attachments != null && attachments.length > 0));
 		LOGGER.info("To Request : " + String.join(",", mailTo));
+		LOGGER.info("Email content: {}", mailContent);
+		LOGGER.info("Email attachments: {}", attachments);
 		
 		if(!isProxytrue) {
 			LOGGER.info("Proxy mail setting is disabled. Proceeding to send email directly.");
